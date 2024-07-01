@@ -1,10 +1,16 @@
-var geoip = require("geoip-lite");
 
 exports.getCity = async (ip) => {
   try {
-    var geo = geoip.lookup(ip);
+    const response = await fetch(
+      `https://api.ipgeolocation.io/ipgeo?apiKey=88ae41e6f69c4faeae1aee1fe413b53c&ip=${ip}`,
+      {
+        method: "GET",
+      }
+    );
 
-    return geo.city;
+    const data = await response.json();
+
+    return data.city;
   } catch (error) {
     console.log(error);
   }

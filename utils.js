@@ -1,8 +1,8 @@
-
+require("dotenv").config();
 exports.getCity = async (ip) => {
   try {
     const response = await fetch(
-      `https://api.ipgeolocation.io/ipgeo?apiKey=88ae41e6f69c4faeae1aee1fe413b53c&ip=${ip}`,
+      `https://api.ipgeolocation.io/ipgeo?apiKey=${process.env.IP_GEO_KEY}&ip=${ip}`,
       {
         method: "GET",
       }
@@ -17,7 +17,7 @@ exports.getCity = async (ip) => {
 };
 
 exports.getTemprature = async (city) => {
-  const apiKey = "a8f3cd8ca6ab43dbbebeb6b334d6ac95";
+  const apiKey = process.env.OPEN_WEATHER_KEY;
   const apiUrl =
     "https://api.openweathermap.org/data/2.5/weather?&units=metric&q=";
   try {
